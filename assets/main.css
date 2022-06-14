@@ -5,3 +5,7 @@
 .app-container {
     @apply container flex flex-col h-screen w-screen items-center justify-center;
 }
+
+.flex-col-center {
+    @apply flex flex-col flex-nowrap justify-center;
+}
