@@ -1,7 +1,4 @@
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'my-blog-app',
@@ -32,15 +29,32 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    [
+      // https://go.nuxtjs.dev/axios
+      '@nuxtjs/axios',
+    ],
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyDxBp1HWzq966e-cRFD0f-GaEmeoystQjI",
+          authDomain: "my-blog-app-f1045.firebaseapp.com",
+          projectId: "my-blog-app-f1045",
+          storageBucket: "my-blog-app-f1045.appspot.com",
+          messagingSenderId: "630475772604",
+          appId: "1:630475772604:web:cbab62c232fcc7925a36b9"
+        },
+        services: {
+          auth: true // Just as example. Can be any other service.
+        }
+      }
+    ]
   ],
+
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
