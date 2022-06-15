@@ -1,7 +1,7 @@
 <template>
   <div class="app-container text-gray-800">
     <div class="flex-col-center gap-4 bg-gray-100 p-10 rounded-lg">
-      <div class="text-2xl font-bold">Login</div>
+      <div class="text-2xl font-bold">Welcome</div>
       <form class="flex flex-col gap-2">
         <label for="email" class="font-bold">Email</label>
         <input
@@ -16,7 +16,6 @@
           placeholder="Password"
         />
         <button
-          type="submit"
           class="
             bg-green-500
             hover:bg-green-700
@@ -28,7 +27,7 @@
             mt-6
           "
         >
-          Submit
+          Login
         </button>
       </form>
     </div>
@@ -36,7 +35,29 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      auth: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+
+  methods: {
+    login() {
+      this.$fire.auth
+        .signInWithEmailAndPassword(this.auth.email, this.auth.password)
+        .then((user) => {
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style>

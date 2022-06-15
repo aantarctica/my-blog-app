@@ -33,7 +33,12 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/postcss8',
+    // 'faker-nuxt',
   ],
+
+  router: {
+    // middleware: ['auth']
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -53,7 +58,14 @@ export default {
           appId: "1:630475772604:web:cbab62c232fcc7925a36b9"
         },
         services: {
-          auth: true // Just as example. Can be any other service.
+          auth: {
+            persistence: 'local', // default
+            initialize: {
+              onAuthStateChangedAction: 'onAuthStateChangedAction',
+              subscribeManually: false
+            },
+            ssr: false, // default
+          }
         }
       }
     ],
