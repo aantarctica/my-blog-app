@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 .app-container {
-    @apply container flex flex-col h-screen w-screen items-center justify-center;
+    @apply container flex flex-col h-screen;
+}
+
+.app-container.center {
+    @apply items-center justify-center;
 }
 
 .flex-col-center {

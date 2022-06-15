@@ -1,24 +1,28 @@
 <template>
-  <div class="app-container text-gray-800">
-    <div class="flex-col-center gap-4 bg-gray-100 p-10 rounded-lg">
-      <div class="text-2xl font-bold">Welcome</div>
-      <form class="flex flex-col gap-2">
+  <div class="app-container center text-neutral-800">
+    <div class="flex-col-center gap-4 bg-neutral-100 p-10 rounded-lg shadow">
+      <div class="text-5xl flex self-start">Tired of all the noise?</div>
+      <div class="text-4xl flex self-start font-bold">Go minimal.</div>
+      <form class="flex flex-col gap-2 m-5">
         <label for="email" class="font-bold">Email</label>
         <input
           type="text"
-          class="bg-gray-200 rounded-md h-8 px-3"
+          class="bg-neutral-200 rounded-md h-8 px-3"
           placeholder="Email"
         />
         <label for="password" class="font-bold">Password</label>
         <input
           type="password"
-          class="bg-gray-200 rounded-md h-8 px-3"
+          class="bg-neutral-200 rounded-md h-8 px-3"
           placeholder="Password"
         />
         <button
           class="
-            bg-green-500
-            hover:bg-green-700
+            bg-black
+            hover:bg-neutral-800
+            transition-all
+            duration-200
+            ease-in-out
             text-white
             font-bold
             py-1
@@ -29,6 +33,9 @@
         >
           Login
         </button>
+        <nuxt-link to="/register" class="self-center hover:underline"
+          >Register a new account</nuxt-link
+        >
       </form>
     </div>
   </div>
