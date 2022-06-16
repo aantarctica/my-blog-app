@@ -1,4 +1,5 @@
 export default {
+  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'my-blog-app',
@@ -33,11 +34,10 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/postcss8',
-    // 'faker-nuxt',
   ],
 
   router: {
-    // middleware: ['auth']
+    middleware: ['auth']
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -64,8 +64,10 @@ export default {
               onAuthStateChangedAction: 'onAuthStateChangedAction',
               subscribeManually: false
             },
+
             ssr: false, // default
-          }
+          },
+          firestore: true,
         }
       }
     ],

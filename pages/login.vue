@@ -1,22 +1,25 @@
 <template>
-  <div class="app-container center text-neutral-800">
+  <div class="app-container center screen text-neutral-800">
     <div class="flex-col-center gap-4 bg-neutral-100 p-10 rounded-lg shadow">
       <div class="text-5xl flex self-start">Tired of all the noise?</div>
       <div class="text-4xl flex self-start font-bold">Go minimal.</div>
-      <form class="flex flex-col gap-2 m-5">
+      <form class="flex flex-col gap-2 m-5" @submit.prevent="login">
         <label for="email" class="font-bold">Email</label>
         <input
           type="text"
           class="bg-neutral-200 rounded-md h-8 px-3"
           placeholder="Email"
+          v-model="auth.email"
         />
         <label for="password" class="font-bold">Password</label>
         <input
           type="password"
           class="bg-neutral-200 rounded-md h-8 px-3"
           placeholder="Password"
+          v-model="auth.password"
         />
         <button
+          type="submit"
           class="
             bg-black
             hover:bg-neutral-800
@@ -33,7 +36,7 @@
         >
           Login
         </button>
-        <nuxt-link to="/register" class="self-center hover:underline"
+        <nuxt-link to="/login" class="self-center hover:underline"
           >Register a new account</nuxt-link
         >
       </form>
@@ -49,6 +52,8 @@ export default {
         email: "",
         password: "",
       },
+      email_value: "",
+      password_value: "",
     };
   },
 
@@ -56,11 +61,30 @@ export default {
     login() {
       this.$fire.auth
         .signInWithEmailAndPassword(this.auth.email, this.auth.password)
-        .then((user) => {
-          this.$router.push("/");
+        .then((userCredential) => {
+          const user = userCredential.auth;
+          console.log(user);
+          $nuxt.$router.push("/");
         })
         .catch((error) => {
-          console.log(error);
+          console.log("Invalid email or password");
+          console.log(this.auth.email);
+          console.log(this.auth.password);
+        });
+    },
+
+    register() {
+      this.$fire.auth
+        .createUserWithEmailAndPassword(this.auth.email, this.auth.password)
+        .then((user) => {
+          $nuxt.$router.push("/");
+          console.log(this.auth.email);
+          console.log(this.auth.password);
+        })
+        .catch((error) => {
+          console.log("Invalid email or password");
+          console.log(this.auth.email);
+          console.log(this.auth.password);
         });
     },
   },
