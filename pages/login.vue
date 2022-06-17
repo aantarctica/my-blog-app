@@ -36,10 +36,10 @@
         >
           Login
         </button>
-        <nuxt-link to="/login" class="self-center hover:underline"
-          >Register a new account</nuxt-link
-        >
       </form>
+      <nuxt-link to="/register" class="self-center hover:underline">
+        Register a new account
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -52,8 +52,6 @@ export default {
         email: "",
         password: "",
       },
-      email_value: "",
-      password_value: "",
     };
   },
 
@@ -63,23 +61,7 @@ export default {
         .signInWithEmailAndPassword(this.auth.email, this.auth.password)
         .then((userCredential) => {
           const user = userCredential.auth;
-          console.log(user);
           $nuxt.$router.push("/");
-        })
-        .catch((error) => {
-          console.log("Invalid email or password");
-          console.log(this.auth.email);
-          console.log(this.auth.password);
-        });
-    },
-
-    register() {
-      this.$fire.auth
-        .createUserWithEmailAndPassword(this.auth.email, this.auth.password)
-        .then((user) => {
-          $nuxt.$router.push("/");
-          console.log(this.auth.email);
-          console.log(this.auth.password);
         })
         .catch((error) => {
           console.log("Invalid email or password");
