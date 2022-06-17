@@ -1,7 +1,7 @@
 <template>
   <div class="app-container screen">
     <AppHeader />
-    <BlogPosts />
+    <BlogPosts class="self-center" />
   </div>
 </template>
 
@@ -13,11 +13,6 @@ export default {
   components: {
     AppHeader,
     BlogPosts,
-  },
-
-  created() {
-    const user = this.$fire.auth.currentUser;
-    console.log(user);
   },
 };
 </script>

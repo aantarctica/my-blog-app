@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .app-container {
-    @apply container flex flex-col;
+    @apply container absolute flex flex-col;
 }
 
 .app-container.screen {
