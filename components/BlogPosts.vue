@@ -1,22 +1,40 @@
 <template>
-  <div class="app-container items-center">
-    <div class="flex flex-col w-3/5">
-      <div
-        v-for="post in this.$store.state.articleList"
-        :key="post"
-        class="blog-post"
-      >
-        <img :src="`${post.imgUrl}`" alt="Image here" class="post-image" />
-        <div class="post-title">
-          {{ post.title }}
-        </div>
-        <div class="text-md">{{ post.description }}</div>
-        <div class="text-sm text-gray-300">{{ post.timestamp }}</div>
-      </div>
-    </div>
+  <div class="flex flex-col w-3/5">
+    <Post
+      v-for="post in this.posts"
+      :post="post"
+      :key="post.id"
+      class="blog-post"
+    />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  methods: {
+    async loadPosts() {
+      const user = this.$fire.auth.currentUser;
+      const postRef = this.$fire.firestore
+        .collection("blogs")
+        .doc(user.uid)
+        .collection("posts");
+      const observer = postRef.onSnapshot((snapshot) => {
+        this.posts = [];
+        snapshot.forEach((doc) => {
+          this.posts.push({ id: doc.id, data: doc.data() });
+        });
+      });
+      console.log(this.posts);
+    },
+  },
+
+  created() {
+    this.loadPosts();
+  },
+};
 </script>
