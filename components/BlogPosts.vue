@@ -1,5 +1,8 @@
 <template>
   <div class="flex flex-col w-3/5">
+    <div v-if="blog_empty" class="text-3xl my-5 text-neutral-500">
+      Nothing to see here yet...
+    </div>
     <Post
       v-for="post in this.posts"
       :post="post"
@@ -16,6 +19,19 @@ export default {
       posts: [],
     };
   },
+
+  watch: {
+    posts: {
+      handler() {
+        if (this.posts.length > 0) {
+          this.blog_empty = false;
+        } else {
+          this.blog_empty = true;
+        }
+      },
+      deep: true,
+    },
+  },
   methods: {
     async loadPosts() {
       const user = this.$fire.auth.currentUser;
@@ -29,7 +45,6 @@ export default {
           this.posts.push({ id: doc.id, data: doc.data() });
         });
       });
-      console.log(this.posts);
     },
   },
 

@@ -18,6 +18,7 @@
             v-model="post.description"
             class="h-12"
           />
+          <!-- <Editor v-model="post.content" /> -->
 
           <button
             type="submit"
@@ -40,7 +41,6 @@
         </form>
       </div>
     </div>
-    <TiptapEditor v-model="post.content" />
   </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
 
   head() {
     return {
-      title: "Edit",
+      title: "Create a new post",
     };
   },
 

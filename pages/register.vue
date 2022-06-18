@@ -14,14 +14,14 @@
           type="text"
           class="bg-neutral-200 rounded-md h-8 px-3"
           placeholder="First Name"
-          v-model="auth.firstName"
+          v-model="firstName"
         />
         <label for="lastName" class="font-bold">Last Name</label>
         <input
           type="text"
           class="bg-neutral-200 rounded-md h-8 px-3"
           placeholder="Last Name"
-          v-model="auth.lastName"
+          v-model="lastName"
         />
         <label for="email" class="font-bold">Email</label>
         <input
@@ -65,16 +65,23 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "Register",
+    };
+  },
+
   data() {
     return {
       auth: {
         email: "",
         password: "",
-        firstName: "",
-        lastName: "",
+        displayName: "",
       },
       register_error: false,
       error_text: "",
+      firstName: "",
+      lastName: "",
     };
   },
 
@@ -91,10 +98,8 @@ export default {
       } else {
         this.$fire.auth
           .createUserWithEmailAndPassword(this.auth.email, this.auth.password)
-          .then((user) => {
+          .then((userCredential) => {
             $nuxt.$router.push("/");
-            console.log(this.auth.email);
-            console.log(this.auth.password);
           })
           .catch((error) => {
             if (error.code == "auth/email-already-in-use") {

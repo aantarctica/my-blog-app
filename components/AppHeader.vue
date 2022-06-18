@@ -11,8 +11,12 @@
       gap-4
     "
   >
-    <div class="font-bold text-3xl">minimal</div>
-    <div class="flex flex-row">
+    <nuxt-link to="/" class="font-bold text-3xl">minimal</nuxt-link>
+    <div class="flex flex-row gap-3">
+      <div class="font-bold">
+        <nuxt-link to="/create">New Post</nuxt-link>
+      </div>
+      |
       <div class="font-bold">
         <button @click="logout()">Logout</button>
       </div>

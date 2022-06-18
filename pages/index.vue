@@ -6,13 +6,23 @@
 </template>
 
 <script>
-import AppHeader from "@/components/AppHeader";
-import BlogPosts from "@/components/BlogPosts";
 export default {
   name: "IndexPage",
-  components: {
-    AppHeader,
-    BlogPosts,
+
+  head() {
+    return {
+      title: "Home",
+    };
+  },
+
+  methods: {
+    loadUser() {
+      console.log(this.$fire.auth.currentUser);
+    },
+  },
+
+  created() {
+    this.loadUser();
   },
 };
 </script>
